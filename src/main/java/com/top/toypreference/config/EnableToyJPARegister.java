@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import({ToyJPARegister.class})
-@Component
 public @interface EnableToyJPARegister {
-    String[] basePackage() default {};
+    String[] entityBasePackage() default {"com.top.*"};
+    String[] repositoryBasePackage() default {"com.top.*"};
 }

@@ -9,7 +9,8 @@ import java.util.Map;
 
 public class ToyJPARegister implements ImportBeanDefinitionRegistrar {
 
-    private String[] basePackages;
+    private String[] entityBasePackage;
+    private String[] repositoryBasePackage;
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
@@ -20,11 +21,19 @@ public class ToyJPARegister implements ImportBeanDefinitionRegistrar {
         registry.registerBeanDefinition("toyJPARegister", bdb.getBeanDefinition());
     }
 
-    public String[] getBasePackages(){
-        return basePackages;
+    public String[] getEntityBasePackage() {
+        return entityBasePackage;
     }
 
-    public void setBasePackages(String[] basePackages) {
-        this.basePackages = basePackages;
+    public void setEntityBasePackage(String[] entityBasePackage) {
+        this.entityBasePackage = entityBasePackage;
+    }
+
+    public String[] getRepositoryBasePackage() {
+        return repositoryBasePackage;
+    }
+
+    public void setRepositoryBasePackage(String[] repositoryBasePackage) {
+        this.repositoryBasePackage = repositoryBasePackage;
     }
 }

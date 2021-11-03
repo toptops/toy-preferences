@@ -9,6 +9,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import({ToyJPAConfig.class})
-@Component
 public @interface EnableToyJPA {
 }
