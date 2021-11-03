@@ -8,6 +8,6 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import({ToyDatasourceConfig.class, ToyJPAConfig.class})
+@Import({ToyJPAConfig.class})
 public @interface EnableToyJPA {
 }
