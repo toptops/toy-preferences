@@ -18,9 +18,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableJpaRepositories(
-        entityManagerFactoryRef = "toyJPAEntityManagerFactory",
-        transactionManagerRef = "toyJPATransactionManager")
 public class ToyJPAConfig {
 
     @Bean(name = "toyDatasource")
