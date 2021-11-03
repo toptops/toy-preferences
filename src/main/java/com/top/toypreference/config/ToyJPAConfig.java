@@ -15,7 +15,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-@Import({ToyDatasourceConfig.class})
+//@Import({ToyDatasourceConfig.class})
 @Configuration
 @EnableJpaRepositories(
         entityManagerFactoryRef = "toyJPAEntityManagerFactory",
