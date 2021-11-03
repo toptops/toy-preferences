@@ -9,31 +9,33 @@ import java.util.Map;
 
 public class ToyJPARegister implements ImportBeanDefinitionRegistrar {
 
-    private String[] entityBasePackage;
-    private String[] repositoryBasePackage;
+    private String[] entityBasePackages;
+    private String[] repositoryBasePackages;
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
         Map<String, Object> metaData = importingClassMetadata.getAnnotationAttributes(EnableToyJPARegister.class.getName());
-        String[] packages = (String[]) metaData.get("basePackage");
+        String[] entityBasePackages = (String[]) metaData.get("entityBasePackages");
+        String[] repositoryBasePackages = (String[]) metaData.get("repositoryBasePackages");
         BeanDefinitionBuilder bdb = BeanDefinitionBuilder.rootBeanDefinition(ToyJPARegister.class);
-        bdb.addPropertyValue("basePackages", packages);
+        bdb.addPropertyValue("entityBasePackages", entityBasePackages);
+        bdb.addPropertyValue("repositoryBasePackages", repositoryBasePackages);
         registry.registerBeanDefinition("toyJPARegister", bdb.getBeanDefinition());
     }
 
-    public String[] getEntityBasePackage() {
-        return entityBasePackage;
+    public String[] getEntityBasePackages() {
+        return entityBasePackages;
     }
 
-    public void setEntityBasePackage(String[] entityBasePackage) {
-        this.entityBasePackage = entityBasePackage;
+    public void setEntityBasePackages(String[] entityBasePackages) {
+        this.entityBasePackages = entityBasePackages;
     }
 
-    public String[] getRepositoryBasePackage() {
-        return repositoryBasePackage;
+    public String[] getRepositoryBasePackages() {
+        return repositoryBasePackages;
     }
 
-    public void setRepositoryBasePackage(String[] repositoryBasePackage) {
-        this.repositoryBasePackage = repositoryBasePackage;
+    public void setRepositoryBasePackages(String[] repositoryBasePackages) {
+        this.repositoryBasePackages = repositoryBasePackages;
     }
 }

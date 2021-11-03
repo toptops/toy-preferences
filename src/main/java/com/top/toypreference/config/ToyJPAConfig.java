@@ -14,7 +14,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-@EnableToyJPARegister
 @Configuration
 @EnableJpaRepositories(
         entityManagerFactoryRef = "toyJPAEntityManagerFactory",
@@ -41,7 +40,7 @@ public class ToyJPAConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setJpaVendorAdapter(mysqlVendor);
         entityManagerFactoryBean.setDataSource(datasource);
-        entityManagerFactoryBean.setPackagesToScan(toyJPARegister.getEntityBasePackage());
+        entityManagerFactoryBean.setPackagesToScan(toyJPARegister.getEntityBasePackages());
         entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
         entityManagerFactoryBean.setPersistenceUnitName("toyMysqlJPA");
 

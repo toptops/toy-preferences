@@ -10,6 +10,6 @@ import java.lang.annotation.*;
 @Documented
 @Import({ToyJPARegister.class})
 public @interface EnableToyJPARegister {
-    String[] entityBasePackage() default {"com.top.*"};
-    String[] repositoryBasePackage() default {"com.top.*"};
+    String[] entityBasePackages() default {"com.top.*"};
+    String[] repositoryBasePackages() default {"com.top.*"};
 }
