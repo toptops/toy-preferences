@@ -14,10 +14,10 @@ import java.lang.annotation.*;
 @Import({ToyJPAConfig.class})
 @EnableJpaRepositories
 public @interface EnableToyJPA {
-    @AliasFor(annotation = EnableJpaRepositories.class, attribute = "toyJPAEntityManagerFactory")
+    @AliasFor(annotation = EnableJpaRepositories.class, attribute = "entityManagerFactoryRef")
     String entityManagerFactoryRef() default "toyJPAEntityManagerFactory";
 
-    @AliasFor(annotation = EnableJpaRepositories.class, attribute = "toyJPATransactionManager")
+    @AliasFor(annotation = EnableJpaRepositories.class, attribute = "transactionManagerRef")
     String transactionManagerRef() default "toyJPATransactionManager";
 
     @AliasFor(annotation = EnableJpaRepositories.class, attribute = "basePackages")
