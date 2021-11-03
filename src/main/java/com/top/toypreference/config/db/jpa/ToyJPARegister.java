@@ -1,5 +1,6 @@
-package com.top.toypreference.config;
+package com.top.toypreference.config.db.jpa;
 
+import com.top.toypreference.config.db.annotation.EnableToyJPARegister;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;

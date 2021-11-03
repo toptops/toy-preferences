@@ -1,7 +1,7 @@
-package com.top.toypreference.config;
+package com.top.toypreference.config.db.annotation;
 
+import com.top.toypreference.config.db.jpa.ToyJPARegister;
 import org.springframework.context.annotation.Import;
-import org.springframework.stereotype.Component;
 
 import java.lang.annotation.*;
 

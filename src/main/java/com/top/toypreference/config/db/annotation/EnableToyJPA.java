@@ -1,13 +1,13 @@
-package com.top.toypreference.config;
+package com.top.toypreference.config.db.annotation;
 
+import com.top.toypreference.config.db.jpa.ToyJPAConfig;
 import org.springframework.context.annotation.Import;
-import org.springframework.stereotype.Component;
 
 import java.lang.annotation.*;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import({ToyJPAConfig.class})
+@Import({ToyDatasourceConfig.class, ToyJPAConfig.class})
 public @interface EnableToyJPA {
 }
