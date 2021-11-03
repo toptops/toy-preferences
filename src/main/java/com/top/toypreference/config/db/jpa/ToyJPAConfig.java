@@ -41,7 +41,12 @@ public class ToyJPAConfig {
     }
 
     @Bean("toyJPAEntityManagerFactory")
-    public EntityManagerFactory toyJPAEntityManagerFactory(@Qualifier("toyDatasource") DataSource datasource,
+    public EntityManagerFactory toyJPAEntityManagerFactory(LocalContainerEntityManagerFactoryBean toyJPAEntityManagerFactoryBean) {
+        return toyJPAEntityManagerFactoryBean.getObject();
+    }
+
+    @Bean("toyJPAEntityManagerFactoryBean")
+    public LocalContainerEntityManagerFactoryBean toyJPAEntityManagerFactoryBean(@Qualifier("toyDatasource") DataSource datasource,
                                                                                  HibernateJpaVendorAdapter mysqlVendor,
                                                                                  ToyJPARegister toyJPARegister) {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
@@ -51,7 +56,7 @@ public class ToyJPAConfig {
         entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
         entityManagerFactoryBean.setPersistenceUnitName("toyMysqlJPA");
 
-        return entityManagerFactoryBean.getObject();
+        return entityManagerFactoryBean;
     }
 
     @Bean
