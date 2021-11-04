@@ -1,6 +1,5 @@
-package com.top.toypreference.config.db.annotation;
+package com.top.commons.config.db.jpa;
 
-import com.top.toypreference.config.db.jpa.ToyJPARegister;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;

@@ -1,7 +1,7 @@
-package com.top.toypreference.config.db.annotation;
+package com.top.commons.annotation;
 
-import com.top.toypreference.config.db.jpa.ToyJPAConfig;
-import org.springframework.context.annotation.ComponentScan;
+import com.top.commons.config.db.ToyDatasourceConfig;
+import com.top.commons.config.db.jpa.ToyJPAConfig;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import({ToyJPAConfig.class})
+@Import({ToyDatasourceConfig.class, ToyJPAConfig.class})
 @EnableJpaRepositories
 public @interface EnableToyJPA {
     @AliasFor(annotation = EnableJpaRepositories.class, attribute = "entityManagerFactoryRef")
