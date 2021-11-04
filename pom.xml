@@ -50,14 +50,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>3.2.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <configuration>
+                    <executable>true</executable>
+                    <fork>no</fork>
+                </configuration>
             </plugin>
         </plugins>
     </build>
