@@ -1,13 +1,11 @@
 package com.top.commons.config.db.jpa;
 
-import com.top.commons.config.db.domain.CommonJPAContext;
-import com.zaxxer.hikari.HikariDataSource;
+import com.top.commons.config.db.domain.CommonJpaContext;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
@@ -18,7 +16,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
-public class ToyJPAConfig {
+public class ToyJpaConfig {
 
     @Bean("toyJPATransactionManager")
     public PlatformTransactionManager toyJPATransactionManager(EntityManagerFactory toyJPAEntityManagerFactory) {
@@ -36,7 +34,7 @@ public class ToyJPAConfig {
     @Bean("toyJPAEntityManagerFactoryBean")
     public LocalContainerEntityManagerFactoryBean toyJPAEntityManagerFactoryBean(@Qualifier("toyBasicDatasource") DataSource datasource,
                                                                                  HibernateJpaVendorAdapter mysqlVendor,
-                                                                                 CommonJPAContext toyBaseJPAContext) {
+                                                                                 CommonJpaContext toyBaseJPAContext) {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setJpaVendorAdapter(mysqlVendor);
         entityManagerFactoryBean.setDataSource(datasource);

@@ -1,20 +1,20 @@
 package com.top.commons.config.db;
 
-import com.top.commons.annotation.EnableToyJPAConfiguration;
-import com.top.commons.config.db.enums.ToyJPAModule;
+import com.top.commons.annotation.EnableToyJpaConfiguration;
+import com.top.commons.config.db.enums.ToyJpaModule;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
 
 import java.util.Map;
 
-public class CommonJPAConfigureSelector implements ImportSelector {
+public class CommonJpaConfigureSelector implements ImportSelector {
 
     @Override
     public String[] selectImports(AnnotationMetadata importingClassMetadata) {
-        Map<String, Object> metaData = importingClassMetadata.getAnnotationAttributes(EnableToyJPAConfiguration.class.getName());
+        Map<String, Object> metaData = importingClassMetadata.getAnnotationAttributes(EnableToyJpaConfiguration.class.getName());
         AnnotationAttributes attributes = AnnotationAttributes.fromMap(metaData);
-        ToyJPAModule module = attributes.getEnum("module");
+        ToyJpaModule module = attributes.getEnum("module");
 
         String jpaConfigBeanName = module.getClazz().getName();
 
