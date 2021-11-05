@@ -10,7 +10,8 @@ import javax.sql.DataSource;
 
 @Configuration
 public class ToyDatasourceConfig {
-    @Bean(name = "toyDatasource")
+
+    @Bean(name = "toyBasicDatasource")
     @ConfigurationProperties(prefix = "spring.datasource.toy")
     public DataSource toyDatasource() {
         return DataSourceBuilder
