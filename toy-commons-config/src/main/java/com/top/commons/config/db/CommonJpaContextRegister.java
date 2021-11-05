@@ -14,10 +14,10 @@ public class CommonJpaContextRegister implements ImportBeanDefinitionRegistrar {
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
         Map<String, Object> metaData = importingClassMetadata.getAnnotationAttributes(EnableToyJpaConfiguration.class.getName());
-        String[] entityBasePackages = (String[]) metaData.get("entityBasePackages");
+        String[] basePackages = (String[]) metaData.get("basePackages");
         ToyJpaModule module = (ToyJpaModule) metaData.get("module");
         BeanDefinitionBuilder bdb = BeanDefinitionBuilder.rootBeanDefinition(CommonJpaContext.class);
-        bdb.addPropertyValue("entityBasePackages", entityBasePackages);
+        bdb.addPropertyValue("basePackages", basePackages);
         registry.registerBeanDefinition(module.name() + "JPAContext", bdb.getBeanDefinition());
     }
 }
