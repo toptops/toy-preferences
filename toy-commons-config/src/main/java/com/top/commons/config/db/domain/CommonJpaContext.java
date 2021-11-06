@@ -5,5 +5,6 @@ import lombok.Setter;
 
 @Getter @Setter
 public class CommonJpaContext {
-    private String[] basePackages;
+    private String[] entityBasePackages;
+    private String[] repositoryBasePackages;
 }

@@ -4,7 +4,6 @@ import com.top.commons.config.db.domain.CommonJpaContext;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -15,30 +14,39 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-@Configuration
-public class ToyJpaConfig {
+@EnableJpaRepositories(
+        basePackages = "#{toyBasicRepositoryBasePackages}",
+        entityManagerFactoryRef = "toyJPABasicEntityManagerFactory",
+        transactionManagerRef = "toyJPABasicTransactionManager"
+)
+public class ToyJpaBasicConfig {
 
-    @Bean("toyJPATransactionManager")
-    public PlatformTransactionManager toyJPATransactionManager(EntityManagerFactory toyJPAEntityManagerFactory) {
+    @Bean("toyBasicRepositoryBasePackages")
+    public String[] repositoryBasePackages(CommonJpaContext toyBaseJPAContext) {
+        return toyBaseJPAContext.getRepositoryBasePackages();
+    }
+
+    @Bean("toyJPABasicTransactionManager")
+    public PlatformTransactionManager toyJPATransactionManager(EntityManagerFactory toyJPABasicEntityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(toyJPAEntityManagerFactory);
+        transactionManager.setEntityManagerFactory(toyJPABasicEntityManagerFactory);
 
         return transactionManager;
     }
 
-    @Bean("toyJPAEntityManagerFactory")
-    public EntityManagerFactory toyJPAEntityManagerFactory(LocalContainerEntityManagerFactoryBean toyJPAEntityManagerFactoryBean) {
-        return toyJPAEntityManagerFactoryBean.getObject();
+    @Bean("toyJPABasicEntityManagerFactory")
+    public EntityManagerFactory toyJPAEntityManagerFactory(LocalContainerEntityManagerFactoryBean toyJPABasicEntityManagerFactoryBean) {
+        return toyJPABasicEntityManagerFactoryBean.getObject();
     }
 
-    @Bean("toyJPAEntityManagerFactoryBean")
+    @Bean("toyJPABasicEntityManagerFactoryBean")
     public LocalContainerEntityManagerFactoryBean toyJPAEntityManagerFactoryBean(@Qualifier("toyBasicDatasource") DataSource datasource,
                                                                                  HibernateJpaVendorAdapter mysqlVendor,
                                                                                  CommonJpaContext toyBaseJPAContext) {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setJpaVendorAdapter(mysqlVendor);
         entityManagerFactoryBean.setDataSource(datasource);
-        entityManagerFactoryBean.setPackagesToScan(toyBaseJPAContext.getBasePackages());
+        entityManagerFactoryBean.setPackagesToScan(toyBaseJPAContext.getEntityBasePackages());
         entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
         entityManagerFactoryBean.setPersistenceUnitName("toyMysqlJPA");
 

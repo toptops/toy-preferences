@@ -1,4 +1,4 @@
-package com.top.commons.config.db;
+package com.top.commons.config.db.jpa;
 
 import com.top.commons.annotation.EnableToyJpaConfiguration;
 import com.top.commons.config.db.enums.ToyJpaModule;
