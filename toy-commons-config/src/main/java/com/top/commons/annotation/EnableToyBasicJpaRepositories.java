@@ -13,13 +13,13 @@ import java.lang.annotation.*;
 public @interface EnableToyBasicJpaRepositories {
     @AliasFor(annotation = EnableJpaRepositories.class, attribute = "basePackages")
     String[] basePackages() default {};
-
+    
     @AliasFor(annotation = EnableJpaRepositories.class, attribute = "basePackageClasses")
     Class<?>[] basePackageClasses() default {};
 
     @AliasFor(annotation = EnableJpaRepositories.class, attribute = "entityManagerFactoryRef")
-    String entityManagerFactoryRef() default "toyJPAEntityManagerFactory";
+    String entityManagerFactoryRef() default "toyJPABasicEntityManagerFactory";
 
     @AliasFor(annotation = EnableJpaRepositories.class, attribute = "transactionManagerRef")
-    String transactionManagerRef() default "toyJPATransactionManager";
+    String transactionManagerRef() default "toyJPABasicTransactionManager";
 }
