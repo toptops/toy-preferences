@@ -17,9 +17,9 @@ public @interface EnableToyBasicJpaRepositories {
     @AliasFor(annotation = EnableJpaRepositories.class, attribute = "basePackageClasses")
     Class<?>[] basePackageClasses() default {};
 
-    @AliasFor(annotation = EnableJpaRepositories.class, attribute = "entityManagerFactory")
+    @AliasFor(annotation = EnableJpaRepositories.class, attribute = "entityManagerFactoryRef")
     String entityManagerFactoryRef() default "toyJPAEntityManagerFactory";
 
-    @AliasFor(annotation = EnableJpaRepositories.class, attribute = "transactionManager")
+    @AliasFor(annotation = EnableJpaRepositories.class, attribute = "transactionManagerRef")
     String transactionManagerRef() default "toyJPATransactionManager";
 }
