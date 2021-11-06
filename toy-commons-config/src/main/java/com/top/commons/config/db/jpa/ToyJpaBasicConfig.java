@@ -1,8 +1,11 @@
 package com.top.commons.config.db.jpa;
 
 import com.top.commons.config.db.domain.CommonJpaContext;
+import com.zaxxer.hikari.HikariDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -20,6 +23,15 @@ import javax.sql.DataSource;
         transactionManagerRef = "toyJPABasicTransactionManager"
 )
 public class ToyJpaBasicConfig {
+
+    @Bean(name = "toyBasicDatasource")
+    @ConfigurationProperties(prefix = "spring.datasource.toy")
+    public DataSource toyDatasource() {
+        return DataSourceBuilder
+                .create()
+                .type(HikariDataSource.class)
+                .build();
+    }
 
     @Bean("toyBasicRepositoryBasePackages")
     public String[] repositoryBasePackages(CommonJpaContext toyBaseJPAContext) {
