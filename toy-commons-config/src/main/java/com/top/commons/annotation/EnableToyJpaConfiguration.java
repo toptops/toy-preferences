@@ -16,6 +16,5 @@ import java.lang.annotation.*;
 })
 public @interface EnableToyJpaConfiguration {
     ToyJpaModule module();
-    String[] entityBasePackages();
-    String[] repositoryBasePackages();
+    String[] basePackages();
 }

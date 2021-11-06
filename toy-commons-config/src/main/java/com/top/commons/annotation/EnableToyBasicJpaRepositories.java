@@ -9,17 +9,11 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@EnableJpaRepositories
+@EnableJpaRepositories(
+        entityManagerFactoryRef = "toyJPABasicEntityManagerFactory",
+        transactionManagerRef = "toyJPABasicTransactionManager"
+)
 public @interface EnableToyBasicJpaRepositories {
     @AliasFor(annotation = EnableJpaRepositories.class, attribute = "basePackages")
     String[] basePackages() default {};
-    
-    @AliasFor(annotation = EnableJpaRepositories.class, attribute = "basePackageClasses")
-    Class<?>[] basePackageClasses() default {};
-
-    @AliasFor(annotation = EnableJpaRepositories.class, attribute = "entityManagerFactoryRef")
-    String entityManagerFactoryRef() default "toyJPABasicEntityManagerFactory";
-
-    @AliasFor(annotation = EnableJpaRepositories.class, attribute = "transactionManagerRef")
-    String transactionManagerRef() default "toyJPABasicTransactionManager";
 }

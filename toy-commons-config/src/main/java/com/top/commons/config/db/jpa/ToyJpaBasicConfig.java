@@ -17,11 +17,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-@EnableJpaRepositories(
-        basePackages = "#{toyBasicRepositoryBasePackages}",
-        entityManagerFactoryRef = "toyJPABasicEntityManagerFactory",
-        transactionManagerRef = "toyJPABasicTransactionManager"
-)
 public class ToyJpaBasicConfig {
 
     @Bean(name = "toyBasicDatasource")
@@ -31,11 +26,6 @@ public class ToyJpaBasicConfig {
                 .create()
                 .type(HikariDataSource.class)
                 .build();
-    }
-
-    @Bean("toyBasicRepositoryBasePackages")
-    public String[] repositoryBasePackages(CommonJpaContext toyBaseJPAContext) {
-        return toyBaseJPAContext.getRepositoryBasePackages();
     }
 
     @Bean("toyJPABasicTransactionManager")
@@ -58,7 +48,7 @@ public class ToyJpaBasicConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setJpaVendorAdapter(mysqlVendor);
         entityManagerFactoryBean.setDataSource(datasource);
-        entityManagerFactoryBean.setPackagesToScan(toyBaseJPAContext.getEntityBasePackages());
+        entityManagerFactoryBean.setPackagesToScan(toyBaseJPAContext.getBasePackages());
         entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
         entityManagerFactoryBean.setPersistenceUnitName("toyMysqlJPA");
 
