@@ -1,6 +1,7 @@
 package com.top.commons.config.db.jpa;
 
 import com.top.commons.annotation.EnableToyJpaConfiguration;
+import com.top.commons.config.db.ToyDatasourceConfig;
 import com.top.commons.config.db.enums.ToyJpaModule;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.annotation.AnnotationAttributes;
@@ -17,7 +18,8 @@ public class CommonJpaConfigureSelector implements ImportSelector {
         ToyJpaModule module = attributes.getEnum("module");
 
         String jpaConfigBeanName = module.getClazz().getName();
+        String datasourceConfigName = ToyDatasourceConfig.class.getName();
 
-        return new String[]{jpaConfigBeanName};
+        return new String[]{jpaConfigBeanName, datasourceConfigName};
     }
 }
