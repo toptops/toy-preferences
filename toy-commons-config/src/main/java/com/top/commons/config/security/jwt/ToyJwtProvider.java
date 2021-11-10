@@ -1,5 +1,6 @@
 package com.top.commons.config.security.jwt;
 
+import com.top.commons.config.security.basic.ToyUserDetails;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +23,7 @@ public class ToyJwtProvider {
 
     public String createToken(Authentication authentication) {
         Date expire = new Date(jwtExpire);
-        ToyJwtAuthentication user = (ToyJwtAuthentication) authentication.getPrincipal();
+        ToyUserDetails user = (ToyUserDetails) authentication.getPrincipal();
 
         return Jwts.builder()
                 .setId(UUID.randomUUID().toString())
