@@ -8,5 +8,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import({})
-public @interface EnableToyConfiguration {
+public @interface EnableToyOauth2Configuration {
 }
