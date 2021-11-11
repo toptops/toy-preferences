@@ -1,6 +1,6 @@
 package com.top.commons.config.security;
 
-import com.top.commons.config.security.basic.ToyCommonSecurityConfig;
+import com.top.commons.config.security.basic.ToyServletFilterExcludeConfig;
 import com.top.commons.config.security.basic.ToyUserDetailServiceRegister;
 import com.top.commons.config.security.basic.ToyUserDetailsService;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import({ToyUserDetailServiceRegister.class,
-        ToyCommonSecurityConfig.class})
+        ToyServletFilterExcludeConfig.class})
 @ComponentScan({"com.top.commons.config.security.jwt"})
 public @interface EnableToySecurityConfiguration {
     Class<? extends ToyUserDetailsService> detailsService();
