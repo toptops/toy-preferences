@@ -3,6 +3,7 @@ package com.top.commons.config.security.jwt;
 import com.top.commons.config.security.basic.ToyUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,6 +40,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         } catch (Exception e) {
             System.out.println("토큰 없다");
+            throw new AccessDeniedException("토큰 문제");
         }
         filterChain.doFilter(request, response);
     }
