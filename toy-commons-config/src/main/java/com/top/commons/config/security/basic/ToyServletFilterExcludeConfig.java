@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class ToyServletFilterExcludeConfig {
 
     @Bean
-    public FilterRegistrationBean registration(JwtAuthenticationFilter jwtAuthenticationFilter) {
+    public FilterRegistrationBean jwtAuthenticationFilterExclude(JwtAuthenticationFilter jwtAuthenticationFilter) {
         FilterRegistrationBean registration = new FilterRegistrationBean(jwtAuthenticationFilter);
         registration.setEnabled(false);
         return registration;
