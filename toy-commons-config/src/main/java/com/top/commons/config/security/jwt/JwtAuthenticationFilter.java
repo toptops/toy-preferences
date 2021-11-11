@@ -4,6 +4,7 @@ import com.top.commons.config.security.basic.ToyUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -34,9 +35,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 UserDetails userDetails = toyUserDetailsService.loadUserById(userId);
                 UsernamePasswordAuthenticationToken authentication = getAuthToken(userDetails);
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                Authentication a = SecurityContextHolder.getContext().getAuthentication();
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                System.out.println("test");
             }
         } catch (Exception e) {
             System.out.println("토큰 없다");
