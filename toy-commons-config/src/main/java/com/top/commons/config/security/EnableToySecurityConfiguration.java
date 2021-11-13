@@ -13,7 +13,7 @@ import java.lang.annotation.*;
 @Documented
 @Import({ToyUserDetailServiceRegister.class,
         ToyServletFilterExcludeConfig.class})
-@ComponentScan({"com.top.commons.config.security.jwt"})
+//@ComponentScan({"com.top.commons.config.security.jwt"})
 public @interface EnableToySecurityConfiguration {
     Class<? extends ToyUserDetailsService> detailsService();
 }
