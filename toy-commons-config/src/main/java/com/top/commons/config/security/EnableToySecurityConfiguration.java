@@ -3,7 +3,7 @@ package com.top.commons.config.security;
 import com.top.commons.config.security.basic.ToyServletFilterExcludeConfig;
 import com.top.commons.config.security.basic.ToyUserDetailServiceRegister;
 import com.top.commons.config.security.basic.ToyUserDetailsService;
-import org.springframework.context.annotation.ComponentScan;
+import com.top.commons.config.security.jwt.EnableJwtConfiguration;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
@@ -11,9 +11,9 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
+@EnableJwtConfiguration
 @Import({ToyUserDetailServiceRegister.class,
         ToyServletFilterExcludeConfig.class})
-//@ComponentScan({"com.top.commons.config.security.jwt"})
 public @interface EnableToySecurityConfiguration {
     Class<? extends ToyUserDetailsService> detailsService();
 }
