@@ -17,7 +17,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-public class ToyJpaBasicConfig {
+public class JpaBasicConfig {
 
     @Bean(name = "toyBasicDatasource")
     @ConfigurationProperties(prefix = "spring.datasource.toy")

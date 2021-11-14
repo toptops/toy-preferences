@@ -1,18 +1,20 @@
 package com.top.commons.config.security.jwt;
 
-import com.top.commons.config.security.basic.ToyUserDetails;
+import com.top.commons.config.security.basic.CommonUserDetails;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class ToyJwtProvider {
+public class JwtProvider {
 
     // 백년
     @Value("${auth.jwt.token}")
@@ -21,13 +23,28 @@ public class ToyJwtProvider {
     @Value("${auth.jwt.expire}")
     private long jwtExpire;
 
-    public String createToken(Authentication authentication) {
+    private String createToken(Authentication authentication) {
         Date expire = new Date(jwtExpire);
-        ToyUserDetails user = (ToyUserDetails) authentication.getPrincipal();
+        CommonUserDetails user = (CommonUserDetails) authentication.getPrincipal();
 
         return Jwts.builder()
                 .setId(UUID.randomUUID().toString())
                 .setSubject(String.valueOf(user.getId()))
+                .setIssuedAt(new Date())
+                .setExpiration(expire)
+                .signWith(SignatureAlgorithm.HS512, jwtSecretKey)
+                .compact();
+    }
+
+    public String createToken(Authentication authentication, Map<String, Object> claims) {
+        if(claims == null) return createToken(authentication);
+        Date expire = new Date(jwtExpire);
+        CommonUserDetails user = (CommonUserDetails) authentication.getPrincipal();
+
+        return Jwts.builder()
+                .setId(UUID.randomUUID().toString())
+                .setSubject(String.valueOf(user.getId()))
+                .setClaims(claims)
                 .setIssuedAt(new Date())
                 .setExpiration(expire)
                 .signWith(SignatureAlgorithm.HS512, jwtSecretKey)

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class ToyServletFilterExcludeConfig {
+public class ServletFilterExcludeConfig {
 
     @Bean
     public FilterRegistrationBean jwtAuthenticationFilterExclude(JwtAuthenticationFilter jwtAuthenticationFilter) {
