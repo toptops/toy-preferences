@@ -8,6 +8,8 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import({HttpCookieOAuth2AuthorizationRequestRepository.class,
-        BasicOAuth2UserService.class})
+        BasicOAuth2UserService.class,
+        OAuth2AuthenticationSuccessHandler.class,
+        OAuth2AuthenticationFailureHandler.class})
 public @interface OAuth2Configuration {
 }
